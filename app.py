@@ -23,12 +23,19 @@ def generate_graph(filtered_tags=None):
     
     net = Network(height="750px", width="100%", bgcolor="white", font_color="black")
     
+    # Use a set to track added nodes
+    added_nodes = set()
+
+    # Add nodes to the graph
     for _, node in nodes.iterrows():
-        net.add_node(node['id'], label=node['name'], title=node['description'], group=node['type'])
-    
+        if node['id'] not in added_nodes:
+            net.add_node(node['id'], label=node['name'], title=node['description'], group=node['type'])
+            added_nodes.add(node['id'])
+
+    # Add edges with relation text (queried from the database)
     for _, edge in edges.iterrows():
         net.add_edge(edge['source'], edge['target'], title=edge['relationship'], label=edge['relationship'])
-    
+
     return net
 
 # Streamlit UI
