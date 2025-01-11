@@ -21,7 +21,7 @@ def generate_graph(filtered_tags=None):
         nodes = nodes[nodes['id'].isin(tagged_nodes)]
         edges = edges[(edges['source'].isin(nodes['id'])) & (edges['target'].isin(nodes['id']))]
     
-    net = Network(height="750px", width="100%", bgcolor="#222222", font_color="white")
+    net = Network(height="750px", width="100%", bgcolor="white", font_color="black")
     
     for _, node in nodes.iterrows():
         net.add_node(node['id'], label=node['name'], title=node['description'], group=node['type'])
