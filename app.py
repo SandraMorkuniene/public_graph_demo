@@ -27,7 +27,7 @@ def generate_graph(filtered_tags=None):
         net.add_node(node['id'], label=node['name'], title=node['description'], group=node['type'])
     
     for _, edge in edges.iterrows():
-        net.add_edge(edge['source'], edge['target'], title=edge['relationship'])
+        net.add_edge(edge['source'], edge['target'], title=edge['relationship'], label=edge['relationship'])
     
     return net
 
